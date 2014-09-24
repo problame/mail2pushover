@@ -1,0 +1,5 @@
+{
+	"user_key" : "<Pushover API user key>",
+	"app_token" : "<Pushover API app token>",
+	"message_id_protocol" : "message"
+}

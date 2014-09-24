@@ -1,0 +1,26 @@
+Received: from mail.example.com (mail.example.com [IPv6:1999:2100:2254:206c::16:88])
+	by hub.example.com (Postfix) with ESMTP id A45A3933;
+	Wed, 24 Sep 2014 04:23:58 +0000 (UTC)
+Delivered-To: mailinglist@example.com
+Date: Tue, 23 Sep 2014 23:30:06 -0500
+From: "John Doe" <john@example.com>
+User-Agent: Mozilla/5.0 (X11; FreeBSD amd64;
+ rv:31.0) Gecko/20100101 Thunderbird/31.1.0
+MIME-Version: 1.0
+Message-ID: <542248CE.9050202@example.com>
+To: mailinglist@example.com
+Subject: Samplesubject
+Cc: a@example.com, b@example.com
+Precedence: list
+List-Id: A list <list.example.com>
+List-Unsubscribe: <https://lists.example.com/mailman/options/a-list>
+List-Archive: <http://lists.example.com/pipermail/a-list/>
+List-Post: <mailto:a-list@list.example.com>
+List-Help: <mailto:a-list-help@list.example.com>
+List-Subscribe: <https://lists.example.com/mailman/listinfo/a-list>
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Errors-To: owner-a-list@example.com
+Sender: owner-a-list@example.com
+
+Some sample content
