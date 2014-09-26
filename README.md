@@ -1,6 +1,5 @@
 A small python script that takes e-mails from *stdin* or a file, reads some headers and sends push notifications to mobile devices using the [Pushover](https://pushover.net).
 
-
 In addition to *subject* and *sender*, the push notifications contain a URL in the following format: `message://\<Message-ID header value\>`
 
 On iOS, the `message://` URL scheme is assigned to *MobileMail.app*. The app will open when tapping on the URL and if the mail is in the inbox, it will be opened.
@@ -35,4 +34,17 @@ For debugging purposes, you might want to run `mail2pushover` from the command l
 To actually receive push notifications when new mail arrives, add the following line to your `.qmail-<username>` file
 
 	/usr/local/bin/python2.7 /path/to/mail2pushover.py --config /path/to/config.json
+	
+	
+##Include in maildrop filter (mailfilter)
 
+If you're using a maildrop script to filter your email, e.g. for spam, you can also send pushes for mails passing certain tests by sending mail2pushover a CC.
+
+	PUSHCMD = "| /usr/local/bin/python2.7 /path/to/mail2pushover.py --config /path/to/config.json"
+
+	if (<your filter>)
+	{
+		...
+		cc "$PUSHCMD"
+		...
+	}
