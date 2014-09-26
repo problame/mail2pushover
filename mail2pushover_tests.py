@@ -34,7 +34,7 @@ class TestMail2Pushover(unittest.TestCase):
         fixture = open("fixtures/mailinglistmail.txt", "r")
         mail2p = Mail2Pushover(fixture)
 
-        note = mail2p.generate_pushover_notification()
+        note = mail2p.generate_pushover_notification("message")
 
         self.assertEqual(note.title, "A list <list.example.com>")
         self.assertEqual(note.message, "Samplesubject")
@@ -47,13 +47,22 @@ class TestMail2Pushover(unittest.TestCase):
         fixture = open("fixtures/normalmail.txt", "r")
         mail2p = Mail2Pushover(fixture)
 
-        note = mail2p.generate_pushover_notification()
+        note = mail2p.generate_pushover_notification("message")
 
         self.assertEqual(note.title, "Sender <sender@example.com>")
         self.assertEqual(note.message, u"Text with Umlaut ü")
         self.assertEqual(note.url, "message://%3C236899350.212129813731411556924226%40example.com%3E")
 
         fixture.close()
+
+    def test_custom_message_id_protocol(self):
+        
+        fixture = open("fixtures/normalmail.txt", "r")
+        mail2p = Mail2Pushover(fixture)
+
+        note = mail2p.generate_pushover_notification("customprotocol")
+        
+        self.assertEqual(note.url, "customprotocol://%3C236899350.212129813731411556924226%40example.com%3E")
 
 
 if __name__ == '__main__':
