@@ -11,6 +11,16 @@ class TestPushoverClient(unittest.TestCase):
 
     def setUp(self):
         self.client = pushover_client.PushoverClient("usertoken", "apptoken")
+    
+    def test_empty_message_handling(self):
+        note = PushoverNotification("a", "", "c")
+        dict = self.client.post_fields_for_notification(note)
+        
+        self.assertDictEqual(dict, {"title":"a",
+                                    "message" : "<No message>",
+                                    "url":"c",
+                                    "user":"usertoken",
+                                    "token":"apptoken"})
 
     def test_post_fields(self):
 

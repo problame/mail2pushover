@@ -14,7 +14,7 @@ class PushoverClient:
     def post_fields_for_notification(self, notification):
         assert isinstance(notification, PushoverNotification)
         return {    "title" : notification.title,
-                    "message" : notification.message,
+                    "message" : notification.message if len(notification.message) > 0 else "<No message>",
                     "url" : notification.url,
                     "token" : self.app_token,
                     "user" : self.user_token}
