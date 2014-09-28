@@ -14,6 +14,8 @@ Some values have to be set in `config.json`.
 * `app_token`: Your Pushover app token
 * `message_id_protocol`: If you want another URL scheme, e.g. to open a third-party mail client, you can replace `message` with your desired protocol, e.g. `x-dispatch` for [Dispatch.app](http://www.dispatchapp.net/faq.html#openDispatchLinksOnMac)
 
+**Other flags**: `/usr/local/bin/python2.7 mail2pushover.py --help`
+
 #Usage
 
 The script is writting for Python 2.7 and designed to be called from `qmail` or some other MTA. The original usecase was a hook into a `.qmail` script on [uberspace](https://wiki.uberspace.de/mail:dotqmail) script.
