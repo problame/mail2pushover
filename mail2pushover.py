@@ -6,6 +6,7 @@ from pushover_notification import PushoverNotification
 from pushover_client import PushoverClient
 import urllib
 import json
+import re
 
 from sys import stdin
 
@@ -22,7 +23,7 @@ class Mail2Pushover:
         return unicodeValue
 
 
-    def generate_pushover_notification(self, url_protocol):
+    def generate_pushover_notification(self, url_protocol, short_auto_title=False):
         assert isinstance(self.message, Message)
 
         isListMail = self.message["List-ID"] != None
@@ -31,6 +32,17 @@ class Mail2Pushover:
             title = self.get_mail_header_value(self.message["List-ID"])
         else:
             title = self.get_mail_header_value(self.message["From"])
+
+
+        if short_auto_title:
+            name_match = re.search(r"^(.+\S)\s*<", title)
+            if name_match and len(name_match.groups()) > 0:
+                title = name_match.group(1)
+            else:
+                mail_match = re.search(r"([a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)", title, re.IGNORECASE)
+                if mail_match and len(mail_match.groups()) > 0:
+                    title = mail_match.group(1)
+
 
         body = self.get_mail_header_value(self.message["Subject"])
         url = u"%s://%s" % (url_protocol, urllib.quote(self.get_mail_header_value(self.message["Message-ID"])))
@@ -48,6 +60,7 @@ if __name__ == "__main__":
     parser.add_argument("--config", metavar="config_file", type=file, nargs=1, help="Path to a file like config.json.example")
     parser.add_argument("--mailfile", metavar="mail_file", type=file, nargs=1, help='Path to a file which contains a mail')
     parser.add_argument("--title", metavar="custom_title", type=unicode, nargs=1, help="A custom title to use instead of the one inferred from the e-mail.")
+    parser.add_argument("--short-auto-title", type=bool, help="Set this flag to infer shorter titles for the notifications. E.g. 'Sender <sender@example.com>' would be 'Sender' only.")
     args = parser.parse_args()
 
     config = json.load(args.config[0])
@@ -58,7 +71,7 @@ if __name__ == "__main__":
 
     m2p = Mail2Pushover(file)
 
-    note = m2p.generate_pushover_notification(config["message_id_protocol"])
+    note = m2p.generate_pushover_notification(config["message_id_protocol"], short_auto_title=args.short_auto_title)
 
     if args.title:
         note.title = args.title[0]
