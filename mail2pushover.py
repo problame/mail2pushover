@@ -47,6 +47,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Options parser.')
     parser.add_argument("--config", metavar="config_file", type=file, nargs=1, help="Path to a file like config.json.example")
     parser.add_argument("--mailfile", metavar="mail_file", type=file, nargs=1, help='Path to a file which contains a mail')
+    parser.add_argument("--title", metavar="custom_title", type=unicode, nargs=1, help="A custom title to use instead of the one inferred from the e-mail.")
     args = parser.parse_args()
 
     config = json.load(args.config[0])
@@ -58,6 +59,9 @@ if __name__ == "__main__":
     m2p = Mail2Pushover(file)
 
     note = m2p.generate_pushover_notification(config["message_id_protocol"])
+
+    if args.title:
+        note.title = args.title[0]
 
     success = pushover.send_push_notification(note)
 
