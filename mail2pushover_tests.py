@@ -65,6 +65,16 @@ class TestMail2Pushover(unittest.TestCase):
 
         fixture.close()
 
+
+    def test_notification_generation_mail_without_subject(self):
+        fixture = open("fixtures/mailwithoutsubject.txt", "r")
+        mail2p = Mail2Pushover(fixture)
+
+        note = mail2p.generate_pushover_notification("message")
+
+        self.assertEqual(note.message, "(No subject)")
+
+
     def test_custom_message_id_protocol(self):
         
         fixture = open("fixtures/normalmail.txt", "r")

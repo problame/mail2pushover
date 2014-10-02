@@ -1,0 +1,12 @@
+Received: (qmail 25787 invoked from network); 24 Sep 2014 11:08:46 -0000
+Date: Wed, 24 Sep 2014 11:08:44 +0000 (GMT)
+From: Sender <sender@example.com>
+To: recepient@example.com
+Message-ID: <236899350.212129813731411556924226@example.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: QUOTED-PRINTABLE
+Content-Disposition: inline
+
+
+Normal mail content without subject
