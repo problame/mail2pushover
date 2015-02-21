@@ -1,0 +1,11 @@
+Received: (qmail 21717 invoked from network); 21 Feb 2015 16:04:44 -0000
+Received: from obscure_host (unknown [10.0.0.4])
+	by mailer.example.com (Postfix) with SMTP id B6B0FAAD4
+	for <user@example.com>; Sat, 21 Feb 2015 16:04:42 +0000 (UTC)
+Received: by delta_btsync (sSMTP sendmail emulation); Sat, 21 Feb 2015 17:04:42 +0100
+From: "User &" <sender@obscure_host>
+Date: Sat, 21 Feb 2015 17:04:42 +0100
+To: user@example.com
+Subject: foobar
+
+tralala

@@ -66,6 +66,14 @@ class TestMail2Pushover(unittest.TestCase):
         fixture.close()
 
 
+    def test_notification_generation_mail_with_special_char_in_sender(self):
+        fixture = open("fixtures/mail_with_special_char_in_sender.txt", "r")
+        mail2p = Mail2Pushover(fixture)
+
+        note = mail2p.generate_pushover_notification("message")
+
+
+
     def test_notification_generation_mail_without_subject(self):
         fixture = open("fixtures/mailwithoutsubject.txt", "r")
         mail2p = Mail2Pushover(fixture)

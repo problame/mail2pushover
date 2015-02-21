@@ -51,6 +51,7 @@ class Mail2Pushover:
 
         #Subject should be present but is not required according to http://tools.ietf.org/html/rfc2822#section-3.6
         message_id_header = self.message["Message-ID"]
+        url = None
         if message_id_header:
             url = u"%s://%s" % (url_protocol, urllib.quote(self.get_mail_header_value(message_id_header)))
 
