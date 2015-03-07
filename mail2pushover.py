@@ -18,7 +18,10 @@ class Mail2Pushover:
     def get_mail_header_value(self, header):
         assert isinstance(header, str)
 
-        unicodeValue = u' '.join(w.decode(e or 'ascii') for w,e in decode_header(header))
+        try:
+            unicodeValue = u' '.join(w.decode(e or 'ascii') for w,e in decode_header(header))
+        except UnicodeDecodeError:
+            unicodeValue = "<m2p: decoding error>"
 
         return unicodeValue
 
