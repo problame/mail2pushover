@@ -16,7 +16,9 @@ class Mail2Pushover:
         self.message = Parser().parse(file, headersonly=True)
 
     def get_mail_header_value(self, header):
-        assert isinstance(header, str)
+
+        if (header == None):
+            return "<m2p: no value provided>"
 
         try:
             unicodeValue = u' '.join(w.decode(e or 'ascii') for w,e in decode_header(header))

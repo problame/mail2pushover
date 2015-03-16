@@ -72,6 +72,11 @@ class TestMail2Pushover(unittest.TestCase):
 
         note = mail2p.generate_pushover_notification("message")
 
+    def test_invalid_headers(self):
+        fixture = open("fixtures/mail_with_invalid_headers.txt", "r")
+        mail2p = Mail2Pushover(fixture)
+
+        note = mail2p.generate_pushover_notification("message")
 
 
     def test_notification_generation_mail_without_subject(self):
